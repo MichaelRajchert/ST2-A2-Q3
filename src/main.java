@@ -5,7 +5,7 @@ import java.util.Scanner;
  * Created by MichaelRajchert on 28/04/2017.
  */
 public class main {
-    public static BST_Node bstNode = new BST_Node();
+    //public static BST_Node bstNode = new BST_Node();
     public static BST bst = new BST();
 
     public static void main(String[] args){

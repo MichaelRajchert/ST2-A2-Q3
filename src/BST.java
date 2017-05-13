@@ -1,3 +1,5 @@
+import javax.xml.soap.Node;
+import java.text.CollationElementIterator;
 import java.util.*;
 
 public class BST {
@@ -157,19 +159,25 @@ public class BST {
     }
 
     public String FindNodeValuesAtLevel(int level){
-        return this.FindNodeValuesAtLevel(level, this.root, " ");
+         return FindNodeValuesAtLevel(level, " -> ");
     }
 
-    public String FindNodeValuesAtLevel(int level, BST_Node node, String separator){
-        StringBuilder sb = new StringBuilder();
+    public String FindNodeValuesAtLevel(int level, String separator){ //FindNodeValuesAtLevel(level, this.root);
+        String output;
+        output = "".join(separator, FindNodeValuesAtLevel(level, this.root));
+        return output;
+    }
+
+    public ArrayList<String> FindNodeValuesAtLevel(int level, BST_Node node){
+        ArrayList<String> NodeLevelArray = new ArrayList<>();
         if (node != null){
             if (node.level == level){
-                sb.append("node " + node.nodeValue + " -> ");
+                NodeLevelArray.add("node " + node.nodeValue);
             } else {
-                sb.append(FindNodeValuesAtLevel(level, node.left, separator));
-                sb.append(FindNodeValuesAtLevel(level, node.right, separator));
+                NodeLevelArray.addAll(FindNodeValuesAtLevel(level, node.left));
+                NodeLevelArray.addAll(FindNodeValuesAtLevel(level, node.right));
             }
         }
-        return sb.toString();
+        return NodeLevelArray;
     }
 }

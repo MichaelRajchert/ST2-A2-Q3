@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Created by MichaelRajchert on 28/04/2017.
@@ -8,23 +9,22 @@ public class main {
     public static BST bst = new BST();
 
     public static void main(String[] args){
-        ArrayList<Integer> array = new ArrayList<>();
-        array.add(50);
-        array.add(30);
-        array.add(55);
-        array.add(25);
-        array.add(35);
-        array.add(52);
-        array.add(60);
-        array.add(10);
-        array.add(32);
-        array.add(37);
-        array.add(65);
-        array.add(15);
+        Scanner usrInput = new Scanner(System.in);
+        String input = usrInput.nextLine();
+        ArrayList<Integer> array = getUserInput(input);
 
         bst.addRange(array);
         for (int i = 0; i <= 4; i++){
             System.out.println("Level " + i + ": " + bst.FindNodeValuesAtLevel(i));
         }
+    }
+
+    public static ArrayList<Integer> getUserInput(String input){
+        ArrayList<Integer> output = new ArrayList<>();
+        String[] inputArray = input.split(" ");
+        for (int i  = 0; i < inputArray.length; i++){
+            output.add(Integer.parseInt(inputArray[i]));
+        }
+        return output;
     }
 }
